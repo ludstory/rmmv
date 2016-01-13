@@ -19,6 +19,7 @@
  *
  * @help 게임종료 메뉴 추가 플러그인 v1.0 by LuD
 */
+
 (function() {
 
 	var parameters = PluginManager.parameters('LuD_ExitMenu');
