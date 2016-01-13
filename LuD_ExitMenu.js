@@ -41,7 +41,8 @@ ExitGame
 
 	//---------------------------------------------------------------------------
 	LuD.params.exitText = String(LuD.parameters['종료 문자'] || '게임 종료');
-	LuD.params.useGameEnd = ['네','예','true','1','사용','표시'].indexOf(String(LuD.parameters['메뉴 사용'] || '네')) !== -1;
+	var _yesSign = ['네','예','true','1','사용','표시','YES'].toLowerCase();
+	LuD.params.useGameEnd = _yesSign.indexOf(String(LuD.parameters['메뉴 사용'] || '네')) !== -1;
 	//---------------------------------------------------------------------------
 
 	Scene_Base.prototype.commandExit = function() {
