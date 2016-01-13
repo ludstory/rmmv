@@ -21,7 +21,7 @@ LuD.ExitMenu = LuD.ExitMenu || {};
 @param 메뉴 사용
 @desc 게임 내부의 메뉴에서 그만두기를 할 경우에도 표시할지 여부
 네 : 사용(기본값), 아니오: 사용 안함
-@default true
+@default 네
 
 @help
 게임종료 메뉴 추가 플러그인 by LuD
