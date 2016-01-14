@@ -1,6 +1,6 @@
 //=============================================================================
 // LuD_ExitMenu.js
-// v1.0.1
+// v1.1.0
 //=============================================================================
 var Imported = Imported || {};
 Imported.LuD_ExitMenu = true;
@@ -28,7 +28,7 @@ LuD.ExitMenu = LuD.ExitMenu || {};
 
 타이틀과 게임 메뉴에 '게임 종료' 명령을 추가해 줍니다.
 
-또한 이벤트의 플러그인 명령에
+또한 이벤트의 플러그인 커멘드에
 ExitGame
 이라고 적으면 게임을 종료할 수 있습니다.
 
@@ -37,6 +37,7 @@ ExitGame
 
 (function() {
 	LuD.parameters = PluginManager.parameters('LuD_ExitMenu');
+	LuD.ExitMenu.pluginCommand = Game_Interpreter.prototype.pluginCommand;
 	LuD.params = LuD.params || {};
 
 	//---------------------------------------------------------------------------
@@ -51,9 +52,8 @@ ExitGame
 		SceneManager.exit();
 	};
 
-	_Game_Interpreter_pluginCommand = Game_Interpreter.prototype.pluginCommand;
 	Game_Interpreter.prototype.pluginCommand = function(command, args) {
-		_Game_Interpreter_pluginCommand.call(this, command, args);
+		LuD.ExitMenu.pluginCommand = Game_Interpreter.prototype.pluginCommand;
         if (command.toLowerCase() === "exitgame") {
 			SceneManager._scene.fadeOutAll();
 			SceneManager.exit();
