@@ -32,6 +32,7 @@ LuD.ExitMenu = LuD.ExitMenu || {};
 ExitGame
 이라고 적으면 게임을 종료할 수 있습니다.
 
+2016.1.15 - 다른 플러그인 명령이 사용불가였던 치명적 오류 수정
 2016.1.14 - 내부 코드 수정
 2016.01.13 - 플러그인 배포
 */
@@ -54,34 +55,34 @@ ExitGame
 	};
 
 	Game_Interpreter.prototype.pluginCommand = function(command, args) {
-		LuD.ExitMenu.pluginCommand = Game_Interpreter.prototype.pluginCommand;
+		LuD.ExitMenu.pluginCommand.call(this, command, args);
         if (command.toLowerCase() === "exitgame") {
 			SceneManager._scene.fadeOutAll();
 			SceneManager.exit();
 		};
 	};
 
-	var _Scene_Title_createCommandwindow = Scene_Title.prototype.createCommandWindow;
+	LuD.ExitMenu.Scene_Title_createCommandwindow = Scene_Title.prototype.createCommandWindow;
 	Scene_Title.prototype.createCommandWindow = function() {
-		_Scene_Title_createCommandwindow.call(this);
+		LuD.ExitMenu.Scene_Title_createCommandwindow.call(this);
 		this._commandWindow.setHandler('exit', this.commandExit.bind(this));
 	};
 
-	var _Scene_GameEnd_createCommandWindow = Scene_GameEnd.prototype.createCommandWindow;
+	LuD.ExitMenu.Scene_GameEnd_createCommandWindow = Scene_GameEnd.prototype.createCommandWindow;
 	Scene_GameEnd.prototype.createCommandWindow = function() {
-		_Scene_GameEnd_createCommandWindow.call(this);
+		LuD.ExitMenu.Scene_GameEnd_createCommandWindow.call(this);
 		if(LuD.params.useGameEnd) this._commandWindow.setHandler('exit', this.commandExit.bind(this));
 	};
 
-	var _Window_TitleCommand_makeCommandList = Window_TitleCommand.prototype.makeCommandList;
+	LuD.ExitMenu.Window_TitleCommand_makeCommandList = Window_TitleCommand.prototype.makeCommandList;
 	Window_TitleCommand.prototype.makeCommandList = function() {
-		_Window_TitleCommand_makeCommandList.call(this);
+		LuD.ExitMenu.Window_TitleCommand_makeCommandList.call(this);
 		this.addCommand(LuD.params.exitText, 'exit');
 	};
 
-	var _Window_GameEnd_makeCommandList = Window_GameEnd.prototype.makeCommandList;
+	LuD.ExitMenu.Window_GameEnd_makeCommandList = Window_GameEnd.prototype.makeCommandList;
 	Window_GameEnd.prototype.makeCommandList = function() {
-		_Window_GameEnd_makeCommandList.call(this);
+		LuD.ExitMenu.Window_GameEnd_makeCommandList.call(this);
 		if(LuD.params.useGameEnd) this.addCommand(LuD.params.exitText, 'exit');
 	};
 	//---------------------------------------------------------------------------
