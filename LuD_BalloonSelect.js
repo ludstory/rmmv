@@ -28,6 +28,7 @@ LuD.BalloonSelect = LuD.BalloonSelect || {};
 
 기본 그래픽파일 이름은 Balloon 입니다.
 
+2016.1.15 - 내부 코드 수정
 2016.01.14 - 플러그인 배포
 */
 
@@ -38,9 +39,9 @@ LuD.BalloonSelect = LuD.BalloonSelect || {};
 	var _defaultBalloonName = 'Balloon';
 
 	//---------------------------------------------------------------------------
-	var _Game_System_initialize = Game_System.prototype.initialize;
+	LuD.BalloonSelect.Game_System_initialize = Game_System.prototype.initialize;
 	Game_System.prototype.initialize = function() {
-		_Game_System_initialize.call(this);
+		LuD.BalloonSelect.Game_System_initialize.call(this);
 		this._balloonName = _defaultBalloonName;
 	}
 	//---------------------------------------------------------------------------
