@@ -27,6 +27,8 @@ LuD.BalloonSelect = LuD.BalloonSelect || {};
 이라고 적어주면 FileName의 그래픽파일을 사용해서 말풍선이 표시됩니다.
 
 기본 그래픽파일 이름은 Balloon 입니다.
+
+2016.01.14 - 플러그인 배포
 */
 
 (function() {
