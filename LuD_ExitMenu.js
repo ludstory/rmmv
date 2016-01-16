@@ -6,7 +6,7 @@ var Imported = Imported || {};
 Imported.LuD_ExitMenu = true;
 
 var LuD = LuD || {};
-LuD.ExitMenu = LuD.ExitMenu || {};
+LuD.ExitMenu = {};
 
 //-----------------------------------------------------------------------------
 /*:
@@ -38,14 +38,14 @@ ExitGame
 */
 
 (function() {
-	LuD.parameters = PluginManager.parameters('LuD_ExitMenu');
+	LuD.ExitMenu.parameters = PluginManager.parameters('LuD_ExitMenu');
 	LuD.ExitMenu.pluginCommand = Game_Interpreter.prototype.pluginCommand;
 	LuD.ExitMenu.params = {};
 
 	//---------------------------------------------------------------------------
-	LuD.ExitMenu.params['exitText'] = String(LuD.parameters['종료 문자'] || '게임 종료');
+	LuD.ExitMenu.params['exitText'] = String(LuD.ExitMenu.parameters['종료 문자'] || '게임 종료');
 	var _yesSign = ['네','예','true','1','사용','표시','yes','y'];
-	LuD.ExitMenu.params['useGameEnd'] = _yesSign.indexOf(String(LuD.parameters['메뉴 사용'] || '네').toLowerCase()) !== -1;
+	LuD.ExitMenu.params['useGameEnd'] = _yesSign.indexOf(String(LuD.ExitMenu.parameters['메뉴 사용'] || '네').toLowerCase()) !== -1;
 	//---------------------------------------------------------------------------
 
 	Scene_Base.prototype.commandExit = function() {
