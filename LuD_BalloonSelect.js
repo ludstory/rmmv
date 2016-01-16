@@ -1,12 +1,12 @@
 //=============================================================================
 // LuD_BalloonSelect.js
-// v1.0.0
+// v1.0.1
 //=============================================================================
 var Imported = Imported || {};
 Imported.LuD_BalloonSelect = true;
 
 var LuD = LuD || {};
-LuD.BalloonSelect = LuD.BalloonSelect || {};
+LuD.BalloonSelect = {};
 
 //-----------------------------------------------------------------------------
 /*:
@@ -28,14 +28,13 @@ LuD.BalloonSelect = LuD.BalloonSelect || {};
 
 기본 그래픽파일 이름은 Balloon 입니다.
 
+2016.1.16 - 내부 코드 수정
 2016.1.15 - 내부 코드 수정
 2016.01.14 - 플러그인 배포
 */
 
 (function() {
-	LuD.parameters = PluginManager.parameters('LuD_BalloonSelect');
 	LuD.BalloonSelect.pluginCommand = Game_Interpreter.prototype.pluginCommand;
-	LuD.params = LuD.params || {};
 	var _defaultBalloonName = 'Balloon';
 
 	//---------------------------------------------------------------------------
