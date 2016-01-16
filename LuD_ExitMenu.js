@@ -40,13 +40,12 @@ ExitGame
 (function() {
 	LuD.parameters = PluginManager.parameters('LuD_ExitMenu');
 	LuD.ExitMenu.pluginCommand = Game_Interpreter.prototype.pluginCommand;
-	LuD.params = LuD.params || {};
-	LuD.params.exitMenu = {};
+	LuD.ExitMenu.params = {};
 
 	//---------------------------------------------------------------------------
-	LuD.params.exitMenu['exitText'] = String(LuD.parameters['종료 문자'] || '게임 종료');
+	LuD.ExitMenu.params['exitText'] = String(LuD.parameters['종료 문자'] || '게임 종료');
 	var _yesSign = ['네','예','true','1','사용','표시','yes','y'];
-	LuD.params.exitMenu['useGameEnd'] = _yesSign.indexOf(String(LuD.parameters['메뉴 사용'] || '네').toLowerCase()) !== -1;
+	LuD.ExitMenu.params['useGameEnd'] = _yesSign.indexOf(String(LuD.parameters['메뉴 사용'] || '네').toLowerCase()) !== -1;
 	//---------------------------------------------------------------------------
 
 	Scene_Base.prototype.commandExit = function() {
@@ -72,19 +71,19 @@ ExitGame
 	LuD.ExitMenu.Scene_GameEnd_createCommandWindow = Scene_GameEnd.prototype.createCommandWindow;
 	Scene_GameEnd.prototype.createCommandWindow = function() {
 		LuD.ExitMenu.Scene_GameEnd_createCommandWindow.call(this);
-		if(LuD.params.exitMenu['useGameEnd']) this._commandWindow.setHandler('exit', this.commandExit.bind(this));
+		if(LuD.ExitMenu.params['useGameEnd']) this._commandWindow.setHandler('exit', this.commandExit.bind(this));
 	};
 
 	LuD.ExitMenu.Window_TitleCommand_makeCommandList = Window_TitleCommand.prototype.makeCommandList;
 	Window_TitleCommand.prototype.makeCommandList = function() {
 		LuD.ExitMenu.Window_TitleCommand_makeCommandList.call(this);
-		this.addCommand(LuD.params.exitMenu['exitText'], 'exit');
+		this.addCommand(LuD.ExitMenu.params['exitText'], 'exit');
 	};
 
 	LuD.ExitMenu.Window_GameEnd_makeCommandList = Window_GameEnd.prototype.makeCommandList;
 	Window_GameEnd.prototype.makeCommandList = function() {
 		LuD.ExitMenu.Window_GameEnd_makeCommandList.call(this);
-		if(LuD.params.exitMenu['useGameEnd']) this.addCommand(LuD.params.exitMenu['exitText'], 'exit');
+		if(LuD.ExitMenu.params['useGameEnd']) this.addCommand(LuD.ExitMenu.params['exitText'], 'exit');
 	};
 	//---------------------------------------------------------------------------
 })();
